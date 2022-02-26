@@ -5051,7 +5051,7 @@ const roomInput = document.getElementById("room-input");
 const form = document.getElementById("form");
 
 const socket = io("https://web-socket-2018.herokuapp.com:3000/");
-const userSocket = io("https://web-socket-2018.herokuapp.com/user",{auth:{token:'test'}});
+const userSocket = io("https://web-socket-2018.herokuapp.com:3000/user",{auth:{token:'test'}});
 
  userSocket.on('connect_error',error=>{
    console.log(error);
