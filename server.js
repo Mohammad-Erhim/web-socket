@@ -7,6 +7,7 @@ const express = require("express");
 
 const app = express();
 app.use(express.static(path.join(__dirname, "/client")));
+
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "/client", "index.html"));
 });
@@ -19,6 +20,12 @@ const io = require("socket.io")(process.env.PORT_SOCKET ||3000, {
   },
 });
 const userIo = io.of("/user");
+
+userIo.on('connect_error',error=>{
+    console.log(error);
+ 
+  
+  })
 userIo.on("connection", (socket) => {
   console.log("connected to user namespace " + socket.username);
 });
