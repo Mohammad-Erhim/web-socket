@@ -9,6 +9,8 @@ const socket = io("https://web-socket-2018.herokuapp.com/");
 const userSocket = io("https://web-socket-2018.herokuapp.com/user",{auth:{token:'test'}});
 
  userSocket.on('connect_error',error=>{
+   console.log(error);
+
    displayMessage(error);
  })
 socket.on("connect", () => {
