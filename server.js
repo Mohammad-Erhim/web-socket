@@ -13,7 +13,7 @@ app.get("*", (req, res) => {
 
 app.listen(process.env.PORT || 8081);
 
-const io = require("socket.io")(3000, {
+const io = require("socket.io")(process.env.PORT_SOCKET ||3000, {
   cors: {
     origin: [ "https://admin.socket.io",process.env.APP_URL],
   },
