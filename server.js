@@ -1,5 +1,6 @@
-const { instrument } = require("@socket.io/admin-ui");
 require("dotenv").config();
+const { instrument } = require("@socket.io/admin-ui");
+
 const path = require("path");
 
 const express = require("express");
@@ -10,9 +11,11 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "/client", "index.html"));
 });
 
+app.listen(process.env.PORT || 8081);
+
 const io = require("socket.io")(3000, {
   cors: {
-    origin: ["http://localhost:8081", "https://admin.socket.io",process.env.APP_URL],
+    origin: [ "https://admin.socket.io",process.env.APP_URL],
   },
 });
 const userIo = io.of("/user");
@@ -51,5 +54,3 @@ io.on("connection", (socket) => {
 });
 instrument(io, { auth: false });
 
-
-app.listen(process.env.PORT || 8081);

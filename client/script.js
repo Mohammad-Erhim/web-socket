@@ -1,11 +1,12 @@
+ 
 const { io } = require("socket.io-client");
 const joinRoomButton = document.getElementById("room-button");
 const messageInput = document.getElementById("message-input");
 const roomInput = document.getElementById("room-input");
 const form = document.getElementById("form");
 
-const socket = io("http://localhost:3000");
-const userSocket = io("http://localhost:3000/user",{auth:{token:'test'}});
+const socket = io("https://web-socket-2018.herokuapp.com/");
+const userSocket = io("https://web-socket-2018.herokuapp.com/user",{auth:{token:'test'}});
 
  userSocket.on('connect_error',error=>{
    displayMessage(error);
