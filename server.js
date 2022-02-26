@@ -12,7 +12,7 @@ app.get("*", (req, res) => {
 
 const io = require("socket.io")(3000, {
   cors: {
-    origin: ["http://localhost:8081", "https://admin.socket.io"],
+    origin: ["http://localhost:8081", "https://admin.socket.io",process.env.APP_URL],
   },
 });
 const userIo = io.of("/user");
