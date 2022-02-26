@@ -8,14 +8,17 @@ const express = require("express");
 const app = express();
 app.use(express.static(path.join(__dirname, "/client")));
 
-app.get("*", (req, res) => {
+app.get((req, res) => {
   res.sendFile(path.join(__dirname, "/client", "index.html"));
 });
 
 app.listen(process.env.PORT || 8081);
 
-const io = require("socket.io")(process.env.PORT_SOCKET ||3000);
-
+const io = require("socket.io")(process.env.PORT_SOCKET ||3000, {
+  cors: {
+    origin: [ "https://admin.socket.io",process.env.APP_URL],
+  },
+});
 const userIo = io.of("/user");
 
 userIo.on('connect_error',error=>{

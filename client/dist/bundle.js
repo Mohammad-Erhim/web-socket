@@ -5043,19 +5043,16 @@ Backoff.prototype.setJitter = function(jitter){
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
- 
 const { io } = __webpack_require__(1);
 const joinRoomButton = document.getElementById("room-button");
 const messageInput = document.getElementById("message-input");
 const roomInput = document.getElementById("room-input");
 const form = document.getElementById("form");
 
-const socket = io("https://web-socket-2018.herokuapp.com/");
-const userSocket = io("https://web-socket-2018.herokuapp.com/user",{auth:{token:'test'}});
+const socket = io("http://localhost:3000");
+const userSocket = io("http://localhost:3000/user",{auth:{token:'test'}});
 
  userSocket.on('connect_error',error=>{
-   console.log(error);
-
    displayMessage(error);
  })
 socket.on("connect", () => {
